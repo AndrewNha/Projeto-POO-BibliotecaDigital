@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d12de7b-1403-4513-adea-3160703fca7c" name="Changes" comment="Create models">
-      <change afterPath="$PROJECT_DIR$/src/enums/StatusEmprestimo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/enums/StatusExemplar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Exemplar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repository/AutorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repository/EmprestimoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repository/ExemplarRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repository/LivroRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repository/UsuarioRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/EmprestimoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Autor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Autor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Emprestimo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Emprestimo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Livro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Livro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +46,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Models",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
