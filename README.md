@@ -4,6 +4,7 @@ Esse é um projeto feito por estudantes do segundo semestre de Ciência da Compu
 
 # Estrutura atual do projeto
 
+```text
 .
 └── src
     ├── enums
