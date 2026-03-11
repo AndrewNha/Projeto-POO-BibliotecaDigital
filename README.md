@@ -1,6 +1,6 @@
 # Projeto Biblioteca Digital
 
-Esse é um projeto feito por estudantes do segundo semestre de Ciência da Computação para disciplina de Programação Orientada à Objetos.
+Esse é um projeto feito por estudantes do segundo semestre de Ciência da Computação para disciplina de Programação Orientada a Objetos.
 
 # Estrutura atual do projeto
 
