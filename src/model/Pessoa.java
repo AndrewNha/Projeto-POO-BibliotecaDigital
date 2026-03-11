@@ -5,6 +5,8 @@ public class Pessoa {
     private Integer id;
     private String nome;
 
+    // Getters e Setters
+
     public Pessoa() {
     }
 

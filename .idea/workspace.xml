@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d12de7b-1403-4513-adea-3160703fca7c" name="Changes" comment="Oii">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+    <list default="true" id="0d12de7b-1403-4513-adea-3160703fca7c" name="Changes" comment="Create models">
+      <change afterPath="$PROJECT_DIR$/src/enums/StatusEmprestimo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/enums/StatusExemplar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Exemplar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repository/AutorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repository/EmprestimoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repository/ExemplarRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repository/LivroRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repository/UsuarioRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/EmprestimoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Autor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Autor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Emprestimo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Emprestimo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Livro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Livro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +27,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -40,15 +55,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -72,11 +88,28 @@
       <option name="project" value="LOCAL" />
       <updated>1773228218901</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Create models">
+      <option name="closed" value="true" />
+      <created>1773247854336</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773247854336</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Create models">
+      <option name="closed" value="true" />
+      <created>1773247883388</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773247883388</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Oii" />
-    <option name="LAST_COMMIT_MESSAGE" value="Oii" />
+    <MESSAGE value="Create models" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create models" />
   </component>
 </project>
