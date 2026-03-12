@@ -12,7 +12,7 @@ public class Autor extends Pessoa{
     @Override
     public String exibirInfo() {
         return "Id: " + super.id + " / " + "Nome: " + super.nome + " / " +
-                "Livros escritos: " + getLivros_escritos() +
+                "Livros escritos: " + getLivros_escritos() + " / " +
                 "Nacionalidade: " + nacionalidade;
     }
 

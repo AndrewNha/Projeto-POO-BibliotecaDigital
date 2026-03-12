@@ -2,15 +2,22 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Livro {
     private ArrayList<Autor> autores;
     private String nome;
     private LocalDate dataPublicacao;
     private String editora;
+    // private String genero; será ?? quantos generos existem ? ;-;
 
     // Getters e Setters
+
+    public void exibirAutores() {
+        System.out.println("Autor(es): ");
+        for (Autor autor : autores) {
+            System.out.println(autor.exibirInfo());
+        }
+    }
 
     public Livro(ArrayList<Autor> autores, String nome, LocalDate dataPublicacao, String editora) {
         this.autores = autores;
