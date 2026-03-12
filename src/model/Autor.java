@@ -9,6 +9,13 @@ public class Autor extends Pessoa{
 
     //Getters e Setters
 
+    @Override
+    public String exibirInfo() {
+        return "Id: " + super.id + " / " + "Nome: " + super.nome + " / " +
+                "Livros escritos: " + getLivros_escritos() +
+                "Nacionalidade: " + nacionalidade;
+    }
+
     public Autor(Integer id, String nome, ArrayList<Livro> livros_escritos) {
         super(id, nome);
         this.livros_escritos = livros_escritos;

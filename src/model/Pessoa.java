@@ -1,11 +1,13 @@
 package model;
 
-public class Pessoa {
+public abstract class Pessoa {
 
-    private Integer id;
-    private String nome;
+    protected Integer id;
+    protected String nome;
 
     // Getters e Setters
+
+    public abstract String exibirInfo();
 
     public Pessoa() {
     }
@@ -29,14 +31,6 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    @Override
-    public String toString() {
-        return "Pessoa{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}';
     }
 
 }

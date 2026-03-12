@@ -1,17 +1,18 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Livro {
     private ArrayList<Autor> autores;
     private String nome;
-    private Date dataPublicacao;
+    private LocalDate dataPublicacao;
     private String editora;
 
     // Getters e Setters
 
-    public Livro(ArrayList<Autor> autores, String nome, Date dataPublicacao, String editora) {
+    public Livro(ArrayList<Autor> autores, String nome, LocalDate dataPublicacao, String editora) {
         this.autores = autores;
         this.nome = nome;
         this.dataPublicacao = dataPublicacao;
@@ -34,11 +35,11 @@ public class Livro {
         this.nome = nome;
     }
 
-    public Date getDataPublicacao() {
+    public LocalDate getDataPublicacao() {
         return dataPublicacao;
     }
 
-    public void setDataPublicacao(Date dataPublicacao) {
+    public void setDataPublicacao(LocalDate dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
     }
 

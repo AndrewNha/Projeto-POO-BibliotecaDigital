@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(LocalDate.now());
         System.out.println(LocalDate.of(2026, 12, 04));
-
     }
 
 }

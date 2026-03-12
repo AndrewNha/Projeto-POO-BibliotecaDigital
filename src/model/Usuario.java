@@ -9,6 +9,13 @@ public class Usuario extends Pessoa{
 
     // Getters e Setters
 
+    @Override
+    public String exibirInfo() {
+        return "Id: " + super.id + " / " + "Nome: " + super.nome + " / " +
+                "Email: " + this.email + "Telefone: " + telefone +
+                "Livros emprestados: " + getLivros_emprestados();
+    }
+
     public Usuario(Integer id, String nome, String email, String telefone, ArrayList<Livro> livros_emprestados) {
         super(id, nome);
         this.email = email;
