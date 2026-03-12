@@ -32,4 +32,12 @@ public class Autor extends Pessoa{
     public void setLivros_escritos(ArrayList<Livro> livros_escritos) {
         this.livros_escritos = livros_escritos;
     }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
 }
