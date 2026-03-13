@@ -22,7 +22,7 @@ public class Autor extends Pessoa{
     }
 
     public Autor(ArrayList<Livro> livrosEscritos) {
-        this.livrosEscritos = this.livrosEscritos;
+        this.livrosEscritos = livrosEscritos;
     }
 
     public ArrayList<Livro> getLivrosEscritos() {
