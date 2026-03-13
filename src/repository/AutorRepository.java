@@ -23,7 +23,7 @@ public class AutorRepository {
 
     public Autor buscarPorId(Integer id) {
         for (Autor autor : autores) {
-            if (autor.getId() == id) {
+            if (autor.getId().equals(id)) {
                 return autor;
             }
         }
@@ -32,7 +32,7 @@ public class AutorRepository {
 
     public Autor buscarPorNome(String nome) {
         for (Autor autor : autores) {
-            if (autor.getNome().toLowerCase() == nome.toLowerCase()) {
+            if (autor.getNome().equalsIgnoreCase(nome)) {
                 return autor;
             }
         }
@@ -42,7 +42,7 @@ public class AutorRepository {
     public ArrayList<Autor> listarPorNacionalidade(String nacionalidade) {
         ArrayList<Autor> autoresPorNacionalidade = new ArrayList<>();
         for (Autor autor : this.autores) {
-            if (autor.getNacionalidade().toLowerCase() == nacionalidade.toLowerCase()) {
+            if (autor.getNacionalidade().equalsIgnoreCase(nacionalidade)) {
                 autoresPorNacionalidade.add(autor);
             }
         }

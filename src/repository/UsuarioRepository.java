@@ -25,7 +25,7 @@ public class UsuarioRepository {
 
     public Usuario buscarPorId(Integer id) {
         for (Usuario usuario : usuarios) {
-            if (usuario.getId() == id) {
+            if (usuario.getId().equals(id)) {
                 return usuario;
             }
         }
@@ -34,7 +34,7 @@ public class UsuarioRepository {
 
     public Usuario buscarPorNome(String nome) {
         for (Usuario usuario : usuarios) {
-            if (usuario.getNome().toLowerCase() == nome.toLowerCase()) {
+            if (usuario.getNome().equalsIgnoreCase(nome)) {
                 return usuario;
             }
         }
@@ -43,7 +43,7 @@ public class UsuarioRepository {
 
     public Usuario buscarPorTelefone(String telefone) {
         for (Usuario usuario : usuarios) {
-            if (usuario.getTelefone() == telefone) {
+            if (usuario.getTelefone().equalsIgnoreCase(telefone)) {
                 return usuario;
             }
         }
@@ -52,7 +52,7 @@ public class UsuarioRepository {
 
     public Usuario buscarPorEmail(String email) {
         for (Usuario usuario : usuarios) {
-            if (usuario.getEmail() == email) {
+            if (usuario.getEmail().equalsIgnoreCase(email)) {
                 return usuario;
             }
         }
