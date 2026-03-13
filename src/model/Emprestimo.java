@@ -7,7 +7,7 @@ public class Emprestimo {
     private Integer id;
     private Usuario usuario;
     private Livro livro;
-    private LocalDate dataEmprestimo = LocalDate.now();
+    private LocalDate dataEmprestimo;
     private LocalDate dataDevolucao;
     private StatusEmprestimo status;
 
