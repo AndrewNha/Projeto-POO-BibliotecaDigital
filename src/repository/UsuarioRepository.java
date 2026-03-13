@@ -1,6 +1,9 @@
 package repository;
 
+import model.Autor;
 import model.Usuario;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UsuarioRepository {
@@ -10,7 +13,15 @@ public class UsuarioRepository {
 
     // CREATE
 
+    public void salvarUsuario(Usuario usuario) {
+        usuarios.add(usuario);
+    }
+
     // READ
+
+    public ArrayList<Usuario> listarTodos() {
+        return usuarios;
+    }
 
     public Usuario buscarPorId(Integer id) {
         for (Usuario usuario : usuarios) {
@@ -18,7 +29,6 @@ public class UsuarioRepository {
                 return usuario;
             }
         }
-        System.out.println("Autor não encontrado.");
         return null;
     }
 
@@ -28,7 +38,6 @@ public class UsuarioRepository {
                 return usuario;
             }
         }
-        System.out.println("Usuário não encontrado.");
         return null;
     }
 
@@ -38,7 +47,6 @@ public class UsuarioRepository {
                 return usuario;
             }
         }
-        System.out.println("Usuário não encontrado.");
         return null;
     }
 
@@ -48,8 +56,21 @@ public class UsuarioRepository {
                 return usuario;
             }
         }
-        System.out.println("Usuário não encontrado.");
         return null;
+    }
+
+    // UPDATE
+
+    public void atualizaUsuario (Usuario usuarioAtualizado) {
+        Usuario usuarioDesatualizado = buscarPorId(usuarioAtualizado.getId());
+
+        if (usuarioDesatualizado != null) {
+            usuarioDesatualizado.setNome(usuarioAtualizado.getNome());
+            usuarioDesatualizado.setEmail(usuarioAtualizado.getEmail());
+            usuarioDesatualizado.setTelefone(usuarioAtualizado.getTelefone());
+            usuarioDesatualizado.setLivrosEmprestados(usuarioAtualizado.getLivrosEmprestados());
+        }
+
     }
 
     // DELETE
@@ -59,9 +80,6 @@ public class UsuarioRepository {
 
         if (usuarioRemovido != null) {
             usuarios.remove(usuarioRemovido);
-            System.out.println("Usuário removido com sucesso.");
-        } else {
-            System.out.println("O usuário não pôde ser encontrado.");
         }
 
     }

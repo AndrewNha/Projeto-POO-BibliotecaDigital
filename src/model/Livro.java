@@ -8,7 +8,8 @@ public class Livro {
     private String nome;
     private LocalDate dataPublicacao;
     private String editora;
-    // private String genero; será ?? quantos generos existem ? ;-;
+    private String genero;
+    // quantos generos existem ? .. ;-; '-'
 
     // Getters e Setters
 
@@ -56,5 +57,13 @@ public class Livro {
 
     public void setEditora(String editora) {
         this.editora = editora;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 }

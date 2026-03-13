@@ -17,6 +17,10 @@ public class AutorRepository {
 
     // READ
 
+    public ArrayList<Autor> listarTodos() {
+        return autores;
+    }
+
     public Autor buscarPorId(Integer id) {
         for (Autor autor : autores) {
             if (autor.getId() == id) {
@@ -47,10 +51,6 @@ public class AutorRepository {
         } else {
             return null;
         }
-    }
-
-    public ArrayList<Autor> listarTodos() {
-        return autores;
     }
 
     // UPDATE
