@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Usuario extends Pessoa{
     private String email;
     private String telefone;
-    private ArrayList<Livro> livros_emprestados;
+    private ArrayList<Livro> livrosEmprestados;
 
     // Getters e Setters
 
@@ -13,14 +13,14 @@ public class Usuario extends Pessoa{
     public String exibirInfo() {
         return "Id: " + super.id + " / " + "Nome: " + super.nome + " / " +
                 "Email: " + this.email + " / " +  "Telefone: " + telefone +
-                " / " + "Livros emprestados: " + getLivros_emprestados();
+                " / " + "Livros emprestados: " + getLivrosEmprestados();
     }
 
-    public Usuario(Integer id, String nome, String email, String telefone, ArrayList<Livro> livros_emprestados) {
+    public Usuario(Integer id, String nome, String email, String telefone, ArrayList<Livro> livrosEmprestados) {
         super(id, nome);
         this.email = email;
         this.telefone = telefone;
-        this.livros_emprestados = livros_emprestados;
+        this.livrosEmprestados = livrosEmprestados;
     }
 
     public String getEmail() {
@@ -39,11 +39,11 @@ public class Usuario extends Pessoa{
         this.telefone = telefone;
     }
 
-    public ArrayList<Livro> getLivros_emprestados() {
-        return livros_emprestados;
+    public ArrayList<Livro> getLivrosEmprestados() {
+        return livrosEmprestados;
     }
 
-    public void setLivros_emprestados(ArrayList<Livro> livros_emprestados) {
-        this.livros_emprestados = livros_emprestados;
+    public void setLivrosEmprestados(ArrayList<Livro> livrosEmprestados) {
+        this.livrosEmprestados = livrosEmprestados;
     }
 }
