@@ -4,12 +4,12 @@ import enums.StatusEmprestimo;
 import java.time.LocalDate;
 
 public class Emprestimo {
+    private Integer id;
+    private Usuario usuario;
+    private Livro livro;
     private LocalDate dataEmprestimo = LocalDate.now();
     private LocalDate dataDevolucao;
     private StatusEmprestimo status;
-
-    private Usuario usuario;
-    private Livro livro;
 
     //Getters e Setters
 
@@ -19,6 +19,14 @@ public class Emprestimo {
         this.status = status;
         this.usuario = usuario;
         this.livro = livro;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDate getDataEmprestimo() {
@@ -60,4 +68,6 @@ public class Emprestimo {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+
+
 }
