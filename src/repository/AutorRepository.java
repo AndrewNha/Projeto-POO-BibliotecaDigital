@@ -11,7 +11,9 @@ public class AutorRepository {
 
     // CREATE
 
-
+    public void salvarAutor (Autor autor) {
+        autores.add(autor);
+    }
 
     // READ
 
@@ -21,7 +23,6 @@ public class AutorRepository {
                 return autor;
             }
         }
-        System.out.println("Autor não encontrado.");
         return null;
     }
 
@@ -31,7 +32,6 @@ public class AutorRepository {
                 return autor;
             }
         }
-        System.out.println("Autor não encontrado.");
         return null;
     }
 
@@ -43,12 +43,27 @@ public class AutorRepository {
             }
         }
         if (autoresPorNacionalidade != null) {
-            System.out.println("Nacionalidade do(s) autor(es): " + nacionalidade.toLowerCase());
             return autoresPorNacionalidade;
         } else {
-            System.out.println("Nenhum autor com essa nacionalidade foi encontrado");
             return null;
         }
+    }
+
+    public ArrayList<Autor> listarTodos() {
+        return autores;
+    }
+
+    // UPDATE
+
+    public void atualizarAutor (Autor autorAtualizado) {
+        Autor autorDesatualizado = buscarPorId(autorAtualizado.getId());
+
+        if (autorDesatualizado != null) {
+            autorDesatualizado.setNome(autorAtualizado.getNome());
+            autorDesatualizado.setNacionalidade(autorAtualizado.getNacionalidade());
+            autorDesatualizado.setLivrosEscritos(autorAtualizado.getLivrosEscritos());
+        }
+
     }
 
     // DELETE
@@ -58,12 +73,8 @@ public class AutorRepository {
 
         if (autorRemovido != null) {
             autores.remove(autorRemovido);
-            System.out.println("Autor removido com sucesso.");
-        } else {
-            System.out.println("O autor não pôde ser encontrado.");
         }
 
     }
-
 
 }
