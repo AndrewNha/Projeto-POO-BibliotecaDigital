@@ -2,23 +2,26 @@ package repository;
 
 import enums.StatusEmprestimo;
 import model.Emprestimo;
-
+import model.Livro;
+import model.Usuario;
 import java.util.ArrayList;
 
 public class EmprestimoRepository {
 
     private ArrayList<Emprestimo> emprestimos = new ArrayList<>();
+    private Integer proximoId = 1;
 
     // CREATE
 
     public void salvarEmprestimo(Emprestimo emprestimo) {
+        emprestimo.setId(proximoId++);
         emprestimos.add(emprestimo);
     }
 
     // READ
 
     public ArrayList<Emprestimo> listarTodos() {
-        return emprestimos;
+        return new ArrayList<>(emprestimos);
     }
 
     public Emprestimo buscarPorId(Integer id) {
@@ -30,46 +33,57 @@ public class EmprestimoRepository {
         return null;
     }
 
-    public ArrayList<Emprestimo> buscarPorUsuario(Integer idUsuario) {
-        ArrayList<Emprestimo> emprestimosDoUsuario = new ArrayList<>();
+    public ArrayList<Emprestimo> listarPorUsuario(Usuario usuario) {
+        ArrayList<Emprestimo> resultado = new ArrayList<>();
         for (Emprestimo emprestimo : emprestimos) {
-            if (emprestimo.getUsuario().getId().equals(idUsuario)) {
-                emprestimosDoUsuario.add(emprestimo);
+            if (emprestimo.getUsuario().getId().equals(usuario.getId())) {
+                resultado.add(emprestimo);
             }
         }
-        return emprestimosDoUsuario;
+        return resultado;
     }
 
-    public ArrayList<Emprestimo> buscarPorStatus(StatusEmprestimo status) {
-        ArrayList<Emprestimo> emprestimosFiltrados = new ArrayList<>();
+    public ArrayList<Emprestimo> listarPorLivro(Livro livro) {
+        ArrayList<Emprestimo> resultado = new ArrayList<>();
         for (Emprestimo emprestimo : emprestimos) {
-            if (emprestimo.getStatus().equals(status)) {
-                emprestimosFiltrados.add(emprestimo);
+            if (emprestimo.getLivro().getId().equals(livro.getId())) {
+                resultado.add(emprestimo);
             }
         }
-        return emprestimosFiltrados;
+        return resultado;
+    }
+
+    public ArrayList<Emprestimo> listarPorStatus(StatusEmprestimo status) {
+        ArrayList<Emprestimo> resultado = new ArrayList<>();
+        for (Emprestimo emprestimo : emprestimos) {
+            if (emprestimo.getStatus() == status) {
+                resultado.add(emprestimo);
+            }
+        }
+        return resultado;
     }
 
     // UPDATE
 
     public void atualizarEmprestimo(Emprestimo emprestimoAtualizado) {
-        Emprestimo emprestimoDesatualizado = buscarPorId(emprestimoAtualizado.getId());
+        Emprestimo emprestimoAntigo = buscarPorId(emprestimoAtualizado.getId());
 
-        if (emprestimoDesatualizado != null) {
-            emprestimoDesatualizado.setDataDevolucao(emprestimoAtualizado.getDataDevolucao());
-            emprestimoDesatualizado.setStatus(emprestimoAtualizado.getStatus());
+        if (emprestimoAntigo != null) {
+            emprestimoAntigo.setUsuario(emprestimoAtualizado.getUsuario());
+            emprestimoAntigo.setLivro(emprestimoAtualizado.getLivro());
+            emprestimoAntigo.setDataEmprestimo(emprestimoAtualizado.getDataEmprestimo());
+            emprestimoAntigo.setDataDevolucao(emprestimoAtualizado.getDataDevolucao());
+            emprestimoAntigo.setStatus(emprestimoAtualizado.getStatus());
         }
-
     }
 
     // DELETE
 
     public void removerEmprestimo(Integer id) {
-        Emprestimo emprestimoRemovido = buscarPorId(id);
+        Emprestimo emprestimo = buscarPorId(id);
 
-        if (emprestimoRemovido != null) {
-            emprestimos.remove(emprestimoRemovido);
+        if (emprestimo != null) {
+            emprestimos.remove(emprestimo);
         }
-
     }
 }
