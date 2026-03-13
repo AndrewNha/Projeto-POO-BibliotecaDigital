@@ -1,9 +1,6 @@
 package repository;
 
-import model.Autor;
 import model.Usuario;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UsuarioRepository {
@@ -20,7 +17,7 @@ public class UsuarioRepository {
     // READ
 
     public ArrayList<Usuario> listarTodos() {
-        return usuarios;
+        return new ArrayList<>(usuarios);
     }
 
     public Usuario buscarPorId(Integer id) {

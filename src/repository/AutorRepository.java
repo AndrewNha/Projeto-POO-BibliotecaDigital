@@ -40,17 +40,16 @@ public class AutorRepository {
     }
 
     public ArrayList<Autor> listarPorNacionalidade(String nacionalidade) {
-        ArrayList<Autor> autoresPorNacionalidade = new ArrayList<>();
+        ArrayList<Autor> resultado = new ArrayList<>();
         for (Autor autor : this.autores) {
             if (autor.getNacionalidade().equalsIgnoreCase(nacionalidade)) {
-                autoresPorNacionalidade.add(autor);
+                resultado.add(autor);
             }
         }
-        if (autoresPorNacionalidade != null) {
-            return autoresPorNacionalidade;
-        } else {
-            return null;
+        if (resultado != null) {
+            return resultado;
         }
+        return null;
     }
 
     // UPDATE
@@ -63,7 +62,6 @@ public class AutorRepository {
             autorDesatualizado.setNacionalidade(autorAtualizado.getNacionalidade());
             autorDesatualizado.setLivrosEscritos(autorAtualizado.getLivrosEscritos());
         }
-
     }
 
     // DELETE
@@ -74,7 +72,6 @@ public class AutorRepository {
         if (autorRemovido != null) {
             autores.remove(autorRemovido);
         }
-
     }
 
 }
