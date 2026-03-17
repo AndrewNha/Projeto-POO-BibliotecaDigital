@@ -2,6 +2,7 @@ package model;
 
 import enums.StatusEmprestimo;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Emprestimo {
     private Integer id;
@@ -23,6 +24,14 @@ public class Emprestimo {
 
     public Integer getId() {
         return id;
+    }
+
+    public String exibirInfo() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "Id: " + id + " / " +
+                "Data empréstimo: " + dataEmprestimo.format(formatter) + " / " +
+                "Data devolução: " + dataDevolucao.format(formatter) + " / " +
+                "Status: " + status;
     }
 
     public void setId(Integer id) {
