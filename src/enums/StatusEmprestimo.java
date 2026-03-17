@@ -1,7 +1,7 @@
 package enums;
 
 public enum StatusEmprestimo {
-    EM_ANDAMENTO,
+    ATIVO,
     DEVOLVIDO,
     ATRASADO;
 }
