@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Livro {
+    private static Integer contadorId = 1;
     private Integer id;
+
     private ArrayList<Autor> autores;
     private String nome;
     private LocalDate dataPublicacao;
@@ -22,6 +24,7 @@ public class Livro {
     }
 
     public Livro(ArrayList<Autor> autores, String nome, LocalDate dataPublicacao, String editora) {
+        this.id = contadorId++;
         this.autores = autores;
         this.nome = nome;
         this.dataPublicacao = dataPublicacao;

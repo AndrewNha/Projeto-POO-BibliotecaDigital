@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Emprestimo {
+    private static Integer contadorId = 1;
     private Integer id;
+
     private Usuario usuario;
     private Livro livro;
     private LocalDate dataEmprestimo;
@@ -15,6 +17,7 @@ public class Emprestimo {
     //Getters e Setters
 
     public Emprestimo(LocalDate dataEmprestimo, LocalDate dataDevolucao, StatusEmprestimo status, Usuario usuario, Livro livro) {
+        this.id = contadorId++;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.status = status;

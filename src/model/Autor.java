@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Autor extends Pessoa{
+    static Integer contadorId = 1;
 
     private ArrayList<Livro> livrosEscritos;
     private String nacionalidade;
@@ -16,8 +17,9 @@ public class Autor extends Pessoa{
                 "Nacionalidade: " + nacionalidade;
     }
 
-    public Autor(Integer id, String nome, ArrayList<Livro> livrosEscritos) {
-        super(id, nome);
+    public Autor(String nome, ArrayList<Livro> livrosEscritos) {
+        super.setId(contadorId++);
+        super.setNome(nome);
         this.livrosEscritos = livrosEscritos;
     }
 
