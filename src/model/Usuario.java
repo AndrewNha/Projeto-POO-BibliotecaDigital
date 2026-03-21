@@ -18,8 +18,9 @@ public class Usuario extends Pessoa{
                 " / " + "Livros emprestados: " + getLivrosEmprestados();
     }
 
-    public Usuario(Integer id, String nome, String email, String telefone, ArrayList<Livro> livrosEmprestados) {
-        super.setId(contadorId++);        super.setNome(nome);
+    public Usuario(String nome, String email, String telefone, ArrayList<Livro> livrosEmprestados) {
+        super.setId(contadorId++);
+        super.setNome(nome);
         this.email = email;
         this.telefone = telefone;
         this.livrosEmprestados = livrosEmprestados;
