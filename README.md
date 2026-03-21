@@ -4,7 +4,7 @@ Esse é um projeto feito por estudantes do segundo semestre de Ciência da Compu
 
 # Estrutura atual do projeto
 
-```text
+```
 .
 └── src
     ├── enums
@@ -27,3 +27,7 @@ Esse é um projeto feito por estudantes do segundo semestre de Ciência da Compu
     │   └── UsuarioRepository.java
     └── services
         └── EmprestimoService.java
+```
+
+# Diagramação UML
+<img width="916" height="524" alt="UML" src="https://github.com/user-attachments/assets/06763f67-d578-42e5-b93c-04e19b4ae45c" />
