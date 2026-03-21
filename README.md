@@ -30,4 +30,4 @@ Esse é um projeto feito por estudantes do segundo semestre de Ciência da Compu
 ```
 
 # Diagramação UML
-<img width="916" height="524" alt="UML" src="https://github.com/user-attachments/assets/06763f67-d578-42e5-b93c-04e19b4ae45c" />
+<img width="895" height="956" alt="UML Biblioteca drawio" src="https://github.com/user-attachments/assets/7b944786-96aa-4997-9016-f5e80cd3a583" />
