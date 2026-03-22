@@ -7,7 +7,9 @@ import services.EmprestimoService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -25,19 +27,45 @@ public class Main {
     // Service
     static EmprestimoService emprestimoService = new EmprestimoService(emprestimoRepository, exemplarRepository);
 
+    static int lerInteiro(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            try {
+                int valor = scanner.nextInt();
+                scanner.nextLine();
+                return valor;
+            } catch (InputMismatchException e) {
+                scanner.nextLine(); // limpa o buffer
+                System.out.println("Entrada inválida. Digite um número inteiro.");
+            }
+        }
+    }
+
+    static LocalDate lerData(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            try {
+                return LocalDate.parse(scanner.nextLine(), formatter);
+            } catch (DateTimeParseException e) {
+                System.out.println("Data inválida. Use o formato dd/MM/yyyy.");
+            }
+        }
+    }
+
+    // INÍCIO
+
     public static void main(String[] args) {
         int opcao = 1;
 
         while (opcao != 0) {
-            System.out.println("\n===BIBLIOTECA DIGITAL ===");
+            System.out.println("\n=== BIBLIOTECA DIGITAL ===");
             System.out.println("1. Gerenciar Autores");
             System.out.println("2. Gerenciar Livros");
             System.out.println("3. Gerenciar Usuários");
             System.out.println("4. Gerenciar Empréstimos");
             System.out.println("0. Sair");
-            System.out.print("Escolha: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+
+            opcao = lerInteiro("Escolha: ");
 
             switch (opcao) {
                 case 1 -> menuAutores();
@@ -58,9 +86,8 @@ public class Main {
         System.out.println("2. Listar todos");
         System.out.println("3. Buscar por nome");
         System.out.println("4. Remover autor");
-        System.out.print  ("Escolha: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+
+        int opcao = lerInteiro("Escolha: ");
 
         switch (opcao) {
             case 1 -> cadastrarAutor();
@@ -77,8 +104,7 @@ public class Main {
         System.out.print("Nacionalidade: ");
         String nacionalidade = scanner.nextLine();
 
-        Autor autor = new Autor(nome, new ArrayList<>());
-        autor.setNacionalidade(nacionalidade);
+        Autor autor = new Autor(nome, nacionalidade, new ArrayList<>());
 
         autorRepository.salvarAutor(autor);
         System.out.println("Autor cadastrado com sucesso!");
@@ -109,9 +135,7 @@ public class Main {
 
     static void removerAutor() {
         listarAutores();
-        System.out.print("Id do autor para remover: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = lerInteiro("Id do autor para remover: ");
         autorRepository.removerAutor(id);
         System.out.println("Autor removido!");
     }
@@ -124,9 +148,8 @@ public class Main {
         System.out.println("2. Listar todos");
         System.out.println("3. Buscar por nome");
         System.out.println("4. Remover livro");
-        System.out.print("Escolha: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+
+        int opcao = lerInteiro("Escolha: ");
 
         switch (opcao) {
             case 1 -> cadastrarLivro();
@@ -144,13 +167,11 @@ public class Main {
         String editora = scanner.nextLine();
         System.out.print("Gênero: ");
         String genero = scanner.nextLine();
-        System.out.print("Data de publicação (dd/MM/yyyy): ");
-        LocalDate dataPublicacao = LocalDate.parse(scanner.nextLine(), formatter);
+
+        LocalDate dataPublicacao = lerData("Data de publicação (dd/MM/yyyy): ");
 
         ArrayList<Autor> autoresDoLivro = new ArrayList<>();
-        System.out.print("Quantos autores? ");
-        int qtd = scanner.nextInt();
-        scanner.nextLine();
+        int qtd = lerInteiro("Quantos autores? ");
 
         for (int i = 0; i < qtd; i++) {
             System.out.print("Nome do autor " + (i + 1) + ": ");
@@ -159,19 +180,23 @@ public class Main {
             if (autor != null) {
                 autoresDoLivro.add(autor);
             } else {
-                System.out.println("Autor não encontrado, pulando...");
+                System.out.println("Autor não encontrado. Cadastre o autor primeiro e tente novamente");
+                return;
             }
         }
 
         Livro livro = new Livro(autoresDoLivro, nome, dataPublicacao, editora);
         livro.setGenero(genero);
-
         livroRepository.salvarLivro(livro);
 
-        Exemplar exemplar = new Exemplar(nome, livro, StatusExemplar.DISPONIVEL);
+        for (Autor a : autoresDoLivro) {
+            a.getLivrosEscritos().add(livro);
+        }
+
+        Exemplar exemplar = new Exemplar(nome + "-EX" + livro.getId(), livro, StatusExemplar.DISPONIVEL);
         exemplarRepository.salvarExemplar(exemplar);
 
-        System.out.println("Livro cadastrado com sucesso.");
+        System.out.println("Livro cadastrado com sucesso com 1 exemplar disponível!");
     }
 
     static void listarLivros() {
@@ -181,8 +206,12 @@ public class Main {
             return;
         }
         for (Livro livro : livros) {
-            System.out.println("Id: " + livro.getId() + " / Nome: " + livro.getNome()
-                    + " / Editora: " + livro.getEditora() + " / Gênero: " + livro.getGenero());
+            System.out.println("Id: " + livro.getId()
+                    + " / Nome: " + livro.getNome()
+                    + " / Editora: " + livro.getEditora()
+                    + " / Gênero: " + livro.getGenero()
+                    + " / Autores: " + livro.getAutores().stream()
+                    .map(a -> a.getNome()).toList());
         }
     }
 
@@ -192,8 +221,10 @@ public class Main {
         Livro livro = livroRepository.buscarPorNome(nome);
 
         if (livro != null) {
-            System.out.println("Id: " + livro.getId() + " / Nome: " + livro.getNome()
-                    + " / Editora: " + livro.getEditora());
+            System.out.println("Id: " + livro.getId()
+                    + " / Nome: " + livro.getNome()
+                    + " / Editora: " + livro.getEditora()
+                    + " / Gênero: " + livro.getGenero());
         } else {
             System.out.println("Livro não encontrado.");
         }
@@ -201,15 +232,12 @@ public class Main {
 
     static void removerLivro() {
         listarLivros();
-        System.out.print("Id do livro para remover: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = lerInteiro("Id do livro para remover: ");
         livroRepository.removerLivro(id);
         System.out.println("Livro removido!");
     }
 
     // USUÁRIOS
-
 
     static void menuUsuarios() {
         System.out.println("\n--- USUÁRIOS ---");
@@ -217,9 +245,8 @@ public class Main {
         System.out.println("2. Listar todos");
         System.out.println("3. Buscar por nome");
         System.out.println("4. Remover usuário");
-        System.out.print("Escolha: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+
+        int opcao = lerInteiro("Escolha: ");
 
         switch (opcao) {
             case 1 -> cadastrarUsuario();
@@ -238,9 +265,7 @@ public class Main {
         System.out.print("Telefone: ");
         String telefone = scanner.nextLine();
 
-        int id = usuarioRepository.listarTodos().size() + 1;
         Usuario usuario = new Usuario(nome, email, telefone, new ArrayList<>());
-
         usuarioRepository.salvarUsuario(usuario);
         System.out.println("Usuário cadastrado com sucesso!");
     }
@@ -270,9 +295,7 @@ public class Main {
 
     static void removerUsuario() {
         listarUsuarios();
-        System.out.print("Id do usuário para remover: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = lerInteiro("Id do usuário para remover: ");
         usuarioRepository.removerUsuario(id);
         System.out.println("Usuário removido!");
     }
@@ -283,12 +306,11 @@ public class Main {
         System.out.println("\n--- EMPRÉSTIMOS ---");
         System.out.println("1. Realizar empréstimo");
         System.out.println("2. Devolver livro");
-        System.out.println("3. Listar empréstimos de um usuário");
+        System.out.println("3. Listar empréstimos ativos de um usuário");
         System.out.println("4. Verificar atraso");
         System.out.println("5. Listar todos em atraso");
-        System.out.print("Escolha: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+
+        int opcao = lerInteiro("Escolha: ");
 
         switch (opcao) {
             case 1 -> realizarEmprestimo();
@@ -317,17 +339,13 @@ public class Main {
             return;
         }
 
-        System.out.print("Prazo em dias para devolução: ");
-        int dias = scanner.nextInt();
-        scanner.nextLine();
+        int dias = lerInteiro("Prazo em dias para devolução: ");
 
         emprestimoService.realizarEmprestimo(usuario, livro, dias);
     }
 
     static void devolverLivro() {
-        System.out.print("Id do empréstimo: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = lerInteiro("Id do empréstimo: ");
         emprestimoService.devolverLivro(id);
     }
 
@@ -347,17 +365,13 @@ public class Main {
             return;
         }
         for (Emprestimo emprestimo : emprestimos) {
-            System.out.println("Id: " + emprestimo.getId()
-                    + " / Livro: " + emprestimo.getLivro().getNome()
-                    + " / Devolução: " + emprestimo.getDataDevolucao().format(formatter)
-                    + " / Status: " + emprestimo.getStatus());
+            System.out.println(emprestimo.exibirInfo()
+                    + " / Livro: " + emprestimo.getLivro().getNome());
         }
     }
 
     static void verificarAtraso() {
-        System.out.print("Id do empréstimo: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = lerInteiro("Id do empréstimo: ");
         emprestimoService.verificarAtraso(id);
     }
 
@@ -368,10 +382,9 @@ public class Main {
             return;
         }
         for (Emprestimo emprestimo : atrasados) {
-            System.out.println("Id: " + emprestimo.getId()
-                    + " / Usuário: " + emprestimo.getUsuario().getNome()
+            System.out.println(emprestimo.exibirInfo()
                     + " / Livro: " + emprestimo.getLivro().getNome()
-                    + " / Devolução prevista: " + emprestimo.getDataDevolucao().format(formatter));
+                    + " / Usuário: " + emprestimo.getUsuario().getNome());
         }
     }
 }

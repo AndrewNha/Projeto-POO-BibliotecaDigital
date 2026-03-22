@@ -14,8 +14,8 @@ public class Usuario extends Pessoa{
     @Override
     public String exibirInfo() {
         return "Id: " + super.id + " / " + "Nome: " + super.nome + " / " +
-                "Email: " + this.email + " / " +  "Telefone: " + telefone +
-                " / " + "Livros emprestados: " + getLivrosEmprestados();
+                "Email: " + this.email + " / " +  "Telefone: " + "(" + telefone
+                + ")" + " / " + "Livros emprestados: " + getLivrosEmprestados();
     }
 
     public Usuario(String nome, String email, String telefone, ArrayList<Livro> livrosEmprestados) {
