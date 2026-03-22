@@ -13,17 +13,15 @@ public class Autor extends Pessoa{
     @Override
     public String exibirInfo() {
         return "Id: " + super.id + " / " + "Nome: " + super.nome + " / " +
-                "Livros escritos: " + getLivrosEscritos() + " / " +
+                "Livros escritos: " + getLivrosEscritos().stream()
+                .map(l -> l.getNome()).toList() + " / " +
                 "Nacionalidade: " + nacionalidade;
     }
 
-    public Autor(String nome, ArrayList<Livro> livrosEscritos) {
+    public Autor(String nome, String nacionalidade, ArrayList<Livro> livrosEscritos) {
         super.setId(contadorId++);
         super.setNome(nome);
-        this.livrosEscritos = livrosEscritos;
-    }
-
-    public Autor(ArrayList<Livro> livrosEscritos) {
+        this.nacionalidade = nacionalidade;
         this.livrosEscritos = livrosEscritos;
     }
 

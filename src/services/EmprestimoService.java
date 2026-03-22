@@ -48,6 +48,7 @@ public class EmprestimoService {
         exemplar.setStatus(StatusExemplar.INDISPONIVEL);
 
         emprestimoRepository.salvarEmprestimo(emprestimo);
+        usuario.getLivrosEmprestados().add(livro);
 
         System.out.println("Empréstimo realizado com sucesso! Devolução prevista: " + dataDevolucao.format(formatter));
         return emprestimo;
@@ -67,6 +68,7 @@ public class EmprestimoService {
         }
 
         emprestimo.setStatus(StatusEmprestimo.DEVOLVIDO);
+        emprestimo.getUsuario().getLivrosEmprestados().remove(emprestimo.getLivro());
 
         ArrayList<Exemplar> exemplares = exemplarRepository.listarPorLivro(emprestimo.getLivro());
         for (Exemplar exemplar : exemplares) {
