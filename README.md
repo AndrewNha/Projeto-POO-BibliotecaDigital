@@ -31,6 +31,8 @@ Esse é um projeto feito por estudantes do segundo semestre de Ciência da Compu
 
 # Diagramação UML
 <img width="894" height="956" alt="UML Biblioteca1 drawio" src="https://github.com/user-attachments/assets/0e98d772-92bc-4259-b2b6-bb8c27279da1" />
+
 # TODO
+
 - Exceptions em algum lugar
 - Relatório
