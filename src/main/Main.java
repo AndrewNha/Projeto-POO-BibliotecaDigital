@@ -25,8 +25,7 @@ public class Main {
     static EmprestimoRepository emprestimoRepository = new EmprestimoRepository();
 
     // Service
-    static EmprestimoService emprestimoService = new EmprestimoService(emprestimoRepository, exemplarRepository);
-
+    static EmprestimoService emprestimoService = new EmprestimoService(emprestimoRepository, exemplarRepository, livroRepository, usuarioRepository);
     static int lerInteiro(String mensagem) {
         while (true) {
             System.out.print(mensagem);
@@ -309,6 +308,8 @@ public class Main {
         System.out.println("3. Listar empréstimos ativos de um usuário");
         System.out.println("4. Verificar atraso");
         System.out.println("5. Listar todos em atraso");
+        System.out.println("6. Livro mais lido");
+        System.out.println("7. Usuário mais ativo");
 
         int opcao = lerInteiro("Escolha: ");
 
@@ -318,6 +319,8 @@ public class Main {
             case 3 -> listarEmprestimosUsuario();
             case 4 -> verificarAtraso();
             case 5 -> listarEmAtraso();
+            case 6 -> livroMaisLido();
+            case 7 -> usuarioMaisAtivo();
             default -> System.out.println("Opção inválida!");
         }
     }
@@ -387,4 +390,23 @@ public class Main {
                     + " / Usuário: " + emprestimo.getUsuario().getNome());
         }
     }
+
+    static void livroMaisLido() {
+        Livro livro = emprestimoService.livroMaisLido();
+        if (livro == null) {
+            System.out.println("Nenhum empréstimo registrado.");
+            return;
+        }
+        System.out.println("Livro mais lido: " + livro.getNome());
+    }
+
+    static void usuarioMaisAtivo() {
+        Usuario usuario = emprestimoService.usuarioMaisAtivo();
+        if (usuario == null) {
+            System.out.println("Nenhum empréstimo registrado.");
+            return;
+        }
+        System.out.println("Usuário mais ativo: " + usuario.getNome());
+    }
+
 }

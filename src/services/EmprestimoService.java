@@ -8,6 +8,8 @@ import model.Livro;
 import model.Usuario;
 import repository.EmprestimoRepository;
 import repository.ExemplarRepository;
+import repository.LivroRepository;
+import repository.UsuarioRepository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,10 +19,18 @@ public class EmprestimoService {
 
     private EmprestimoRepository emprestimoRepository;
     private ExemplarRepository exemplarRepository;
+    private LivroRepository livroRepository;
+    private UsuarioRepository usuarioRepository;
 
-    public EmprestimoService(EmprestimoRepository emprestimoRepository, ExemplarRepository exemplarRepository) {
+
+    public EmprestimoService(EmprestimoRepository emprestimoRepository,
+                             ExemplarRepository exemplarRepository,
+                             LivroRepository livroRepository,
+                             UsuarioRepository usuarioRepository) {
         this.emprestimoRepository = emprestimoRepository;
         this.exemplarRepository = exemplarRepository;
+        this.livroRepository = livroRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public Emprestimo realizarEmprestimo(Usuario usuario, Livro livro, int diasParaDevolucao) {
@@ -109,6 +119,34 @@ public class EmprestimoService {
 
     public ArrayList<Emprestimo> listarTodosEmAtraso() {
         return emprestimoRepository.listarPorStatus(StatusEmprestimo.ATRASADO);
+    }
+
+    public Livro livroMaisLido() {
+        Livro maisLido = null;
+        int maior = 0;
+
+        for (Livro livro : livroRepository.listarTodos()) {
+            int contagem = emprestimoRepository.listarPorLivro(livro).size();
+            if (contagem > maior) {
+                maior = contagem;
+                maisLido = livro;
+            }
+        }
+        return maisLido;
+    }
+
+    public Usuario usuarioMaisAtivo() {
+        Usuario maisAtivo = null;
+        int maior = 0;
+
+        for (Usuario usuario : usuarioRepository.listarTodos()) {
+            int contagem = emprestimoRepository.listarPorUsuario(usuario).size();
+            if (contagem > maior) {
+                maior = contagem;
+                maisAtivo = usuario;
+            }
+        }
+        return maisAtivo;
     }
 
 }
